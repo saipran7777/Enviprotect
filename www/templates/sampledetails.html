@@ -1,0 +1,68 @@
+
+<ion-view align-title="center" view-title="Report">	
+  <ion-content>
+    <div class="list list-inset">
+      Enter the details of the sample
+      <label class="item item-input">
+        <span class="input-label">Outlet Source</span>
+        <input type="text" placeholder="Hand pump, open well etc" ng-model="sample.source" required>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+        Strngth of Smell
+        </div>
+        <select ng-model="sample.strength">
+        <option>Strong</option>
+        <option selected>Medium</option>
+        <option>Weak</option>
+        </select>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Type of Smell</span>
+        <input type="text" placeholder="petroleum, sewage, chemical etc" ng-model="sample.smell" required>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+        Color of Sample
+        </div>
+        <select ng-model="sample.color">
+        <option>Black</option>
+        <option selected>White</option>
+        <option>Brown</option>
+        <option>Yellow</option>
+        <option>Cloudy</option>
+        <option>Clear</option>
+        </select>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Address</span>
+        <input type="text" placeholder="Enter Address or Use Location" id="add" ng-model="sample.address" required>
+      </label>
+        <label class="item item-input" ng-if="!locstat==true">
+        <span class="input-label">Latitude:{{conlat}}</span>
+        <span class="input-label">Longitude:{{conlong}}</span>
+      </label>
+    </div>
+    OR
+    <div class="row">
+      <button class="button icon ion-android-locate" ng-click="geolocat()" ng-if="locstat==true"> Use My Location</button>
+      <button class="button balanced icon ion-checkmark-circled" ng-if="!locstat==true" ng-click="ticklocation()"></button>
+    </div>
+
+    <div id="map" ng-if="!locstat==true" data-tap-disabled="true"></div>
+    <label>
+    Upload Sample Image
+    </label>
+    <div class="row">
+      <button ng-click="imgUpload(1)" class="button button-calm icon ion-camera" id="but"> Use Camera</button>
+      <button ng-click="imgUpload(0)" class="button button-positive icon ion-image" id="but"> Use Gallery</button>
+    </div>
+    <div class="padding">
+      <img id="myImage" class="item full-image" ng-show="!image==true" ng-src="{{source}}">
+    </div>
+    <button class="button button-dark"  ng-click="savesampledetails()" >
+      Submit Details
+    </button>
+
+  </ion-content>
+</ion-view>
